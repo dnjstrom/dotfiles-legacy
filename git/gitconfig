@@ -1,0 +1,7 @@
+[user]
+	email = D@nielstrom.se
+	name = Daniel Ström
+[push]
+	default = simple
+[core]
+	editor = vim
