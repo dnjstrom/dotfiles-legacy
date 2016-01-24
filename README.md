@@ -3,7 +3,7 @@ Daniel's Dotfiles
 
 This repository contains the configuration files of a number of unix/linux utilities along with a set of deployment scripts that automate the process of configuring the host system.
 
-*NOTE* Several deployment scripts assume that this project is located at `~/.dotfiles`.
+*NOTE:* Several deployment scripts assume that this project is located at `~/.dotfiles`.
 
 How to get up and running
 -------------------------
