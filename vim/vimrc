@@ -1,0 +1,39 @@
+execute pathogen#infect()
+
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Always show current position
+set ruler
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases 
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+set nocompatible
+set autoindent
+set wildmenu
+set wildmode=list:longest
+
+" get rid of anoying ~file
+set nobackup
+
+set tabstop=2 softtabstop=0 noexpandtab shiftwidth=2
+
+syntax enable
+
+colorscheme desert
+set background=dark
