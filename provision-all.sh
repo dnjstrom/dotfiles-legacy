@@ -1,3 +1,9 @@
 #!/bin/bash
 
-find . -depth 1 -type d -exec {}/provision.sh \;
+~/.dotfiles/zsh/provision.sh
+~/.dotfiles/git/provision.sh
+~/.dotfiles/vim/provision.sh
+
+echo ""
+echo "You probably want to reload your shell like so:"
+echo "source ~/.zshrc"
