@@ -9,7 +9,7 @@ How to get up and running
 -------------------------
 
     git clone git@github.com:dnjstrom/dotfiles.git ~/.dotfiles
-    sudo chmod +x ~/.dotfiles/**/deploy.sh
+    chmod +x ~/.dotfiles/**/deploy.sh
     ~/.dotfiles/provision-all.sh
 
 The above commands will apply all configuration contained in this repository to the host, replacing any existing setup. You can also run individual provision.sh scripts to apply configuration for only that utility. These provisioning scripts can be found in the corresponding subdirectory.
