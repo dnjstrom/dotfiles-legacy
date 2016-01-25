@@ -3,14 +3,15 @@
 # git submodule init ~/.dotfiles/zsh/.oh-my-zsh
 
 rm -fr ~/.oh-my-zsh
-ln -sfFvh ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 
 cat ~/.dotfiles/zsh/oh-my-zsh/templates/zshrc.zsh-template |\
 	sed -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bureau"/' |\
 	sed -e 's/plugins=(git)/plugins=(autojump docker docker-compose git history-substring-search npm nvm node themes)/' \
 	> ~/.dotfiles/zsh/zshrc
 
-ln -sfFvh ~/.dotfiles/zsh/zshrc	~/.zshrc
+rm ~/.zshrc
+ln -s ~/.dotfiles/zsh/zshrc	~/.zshrc
 
 # Zsh aliases
 line="source ~/.dotfiles/zsh/aliases.sh"

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Symlink global git config, overwriting existing configuration
-ln -sfFvh ~/.dotfiles/git/gitconfig ~/.gitconfig
+rm -f ~/.gitconfig
+ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
 
 
 # Add some git aliases to user shells
