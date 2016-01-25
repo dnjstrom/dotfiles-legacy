@@ -1,28 +1,35 @@
+" Load Pathogen
+set nocompatible " required by pathogen
+runtime packages/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect('packages/{}')
+
+" Styling
+syntax enable
+set background=dark
+colorscheme solarized
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
 
-set autoread   " Set to auto read when a file is changed from the outside
-set ruler      " Always show current position
-set ignorecase " Ignore case when searching
-set smartcase  " When searching try to be smart about cases 
-set hlsearch   " Highlight search results
-set showmatch  " Show matching brackets when text indicator is over them
-set nobackup   " get rid of anoying ~file
+set number " Show line numbers in left gutter
+set ruler " Display the current line and column
+set showmatch " Highlight matching brackets
+set nowrap " Don't soft wrap lines
+set noerrorbells visualbell t_vb= " Disable all errorbells
+set mouse=a " Enable using the mouse
 
-set nocompatible
-set autoindent
+" Enable autocompletion of vim-commands
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest:list,full
 
-
+" Use 2 spaces for indentation
 set tabstop=2
-set softtabstop=0
-set noexpandtab
+set softtabstop=2
 set shiftwidth=2
 
-syntax enable
-
-colorscheme desert
-set background=dark
+" Allow for saving/quitting with lazy shift key
+command W w
+command Q q
+command Wq wq
+command WQ wq
