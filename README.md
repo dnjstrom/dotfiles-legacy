@@ -9,6 +9,7 @@ How to get up and running
 -------------------------
 
     git clone git@github.com:dnjstrom/dotfiles.git ~/.dotfiles
+		git submodule update --init --recursive
     chmod +x ~/.dotfiles/**/deploy.sh
     ~/.dotfiles/provision-all.sh
 
