@@ -12,5 +12,6 @@ How to get up and running
 		git submodule update --init --recursive
     chmod +x ~/.dotfiles/**/deploy.sh
     ~/.dotfiles/provision-all.sh
+		vim -c "PlugUpdate | qa"
 
 The above commands will apply all configuration contained in this repository to the host, replacing any existing setup. You can also run individual provision.sh scripts to apply configuration for only that utility. These provisioning scripts can be found in the corresponding subdirectory.
