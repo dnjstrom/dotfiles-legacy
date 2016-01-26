@@ -1,9 +1,11 @@
-" Plugins loaded by vim-plug
+
+" Plugins {{{
 call plug#begin()
 Plug 'morhetz/gruvbox'
 call plug#end()
+" }}}
 
-" Styling
+" Theme {{{
 syntax enable
 set background=dark
 colorscheme gruvbox
@@ -11,6 +13,7 @@ colorscheme gruvbox
 " Reset background colors to transparent
 hi Normal ctermbg=none
 hi None ctermbg=none
+"}}}
 
 " Enable filetype plugins
 filetype plugin on
@@ -22,6 +25,10 @@ set showmatch " Highlight matching brackets
 set nowrap " Don't soft wrap lines
 set noerrorbells visualbell t_vb= " Disable all errorbells
 set mouse=a " Enable using the mouse
+
+" Allow modelines at the top or bottom of files
+set modeline
+set modelines=5
 
 " Enable autocompletion of vim-commands
 set wildmenu
@@ -37,3 +44,6 @@ command W w
 command Q q
 command Wq wq
 command WQ wq
+
+" Set folding by marker for this file only
+" vim:foldmethod=marker
