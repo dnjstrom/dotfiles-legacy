@@ -1,12 +1,16 @@
-" Load Pathogen
-set nocompatible " required by pathogen
-runtime packages/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect('packages/{}')
+" Plugins loaded by vim-plug
+call plug#begin()
+Plug 'morhetz/gruvbox'
+call plug#end()
 
 " Styling
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
+
+" Reset background colors to transparent
+hi Normal ctermbg=none
+hi None ctermbg=none
 
 " Enable filetype plugins
 filetype plugin on
