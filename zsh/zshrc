@@ -85,6 +85,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Define some utility aliases for zsh
 source ~/.dotfiles/zsh/aliases.sh
-
-# Define some nice git aliases
-source ~/.dotfiles/git/aliases.sh
