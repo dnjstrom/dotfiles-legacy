@@ -5,24 +5,25 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
-Plug 'vim-airline/vim-airline'
 Plug 'kchmck/vim-coffee-script'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'ervandew/supertab'
 call plug#end()
 " }}}
 
 " Plugin Configuration {{{
-
-" Airline
-set laststatus=2 " Always show a status line at the bottom
 
 " CtrlP
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 " }}}
 
@@ -36,7 +37,7 @@ hi Normal ctermbg=none
 hi None ctermbg=none
 "}}}
 
-" Enable filetype plugins
+" Enable filetype plugins.
 filetype plugin on
 filetype indent on
 
@@ -47,29 +48,46 @@ set nowrap " Don't soft wrap lines
 set noerrorbells visualbell t_vb= " Disable all errorbells
 set mouse=a " Enable using the mouse
 
-" Allow modelines at the top or bottom of files
+" Allow modelines at the top or bottom of files.
 set modeline
 set modelines=5
 
-" Enable autocompletion of vim-commands
+" Enable autocompletion of vim-commands.
 set wildmenu
 set wildmode=longest:list,full
 set wildignore+=*/node_modules/*
 set wildignore+=*/bower_components/*
 
-" Use 2 spaces for indentation
+" Use 2 spaces for indentation.
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-" Allow for saving/quitting with lazy shift key
+set incsearch " Show search results as you type
+set hlsearch " Highlight matching search results
+
+set omnifunc=syntaxcomplete#Complete
+
+" Easily reload the vim config.
+command! Reload so $MYVIMRC
+
+" UI fixes
+
+" Allow for saving/quitting with lazy shift key.
 command! W w
 command! Q q
 command! Wq wq
 command! WQ wq
-command! Reload so $MYVIMRC
 
 
-" Set folding by marker for this file only
+
+" Indent pasted text to match target.
+nnoremap p ]p
+
+" Make 'yank rest of line' consistent with 'delete' and 'change'.
+nnoremap Y y$
+
+
+" Set folding by marker for this file only.
 " vim:foldmethod=marker
