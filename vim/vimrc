@@ -4,13 +4,14 @@ call plug#begin()
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mattn/emmet-vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'ervandew/supertab'
+Plug 'Raimondi/delimitMate'
+Plug 'mattn/emmet-vim'
 call plug#end()
 " }}}
 
@@ -23,7 +24,12 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 map <C-n> :NERDTreeToggle<CR>
 
 " SuperTab
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+" Emmet
+" Right after opening vim, remap Shift-Tab to Emmet expansion.
+" Doing it this way is necessary since SuperTab would override a normal mapping
+" since it loads after vimrc.
+autocmd VimEnter * imap <S-Tab> <C-Y>,
 
 " }}}
 
@@ -87,7 +93,6 @@ nnoremap p ]p
 
 " Make 'yank rest of line' consistent with 'delete' and 'change'.
 nnoremap Y y$
-
 
 " Set folding by marker for this file only.
 " vim:foldmethod=marker
