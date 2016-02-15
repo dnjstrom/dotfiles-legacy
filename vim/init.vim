@@ -39,8 +39,8 @@ set background=dark
 colorscheme gruvbox
 
 " Reset background colors to transparent
-hi Normal ctermbg=none
-hi None ctermbg=none
+"hi Normal ctermbg=none
+"hi None ctermbg=none
 "}}}
 
 " Enable filetype plugins.
@@ -72,6 +72,9 @@ set expandtab
 
 set incsearch " Show search results as you type
 set hlsearch " Highlight matching search results
+
+" Use the system clipboard as the default clipboard.
+set clipboard=unnamed
 
 set omnifunc=syntaxcomplete#Complete
 
