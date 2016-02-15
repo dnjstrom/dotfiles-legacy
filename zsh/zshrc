@@ -83,5 +83,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+eval "$(docker-machine env default)"
+
 # Define some utility aliases for zsh
 source ~/.dotfiles/zsh/aliases.sh
+
+# Define some nice git aliases
+source ~/.dotfiles/git/aliases.sh
+
+
