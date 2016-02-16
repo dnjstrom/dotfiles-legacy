@@ -41,6 +41,8 @@ colorscheme gruvbox
 " Reset background colors to transparent
 "hi Normal ctermbg=none
 "hi None ctermbg=none
+"
+set guifont=Source\ Code\ Pro:h15
 "}}}
 
 " Enable filetype plugins.
