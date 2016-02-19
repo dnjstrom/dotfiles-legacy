@@ -107,6 +107,9 @@ map <leader>k 10k
 map <leader>h 20h
 map <leader>l 20l
 
+" Clear highlights
+map <leader>c :nohl<CR>
+
 " Easily reload the vim config.
 command! Reload so $MYVIMRC
 
@@ -128,6 +131,10 @@ nnoremap p ]p
 
 " Make 'yank rest of line' consistent with 'delete' and 'change'.
 nnoremap Y y$
+
+" Fix inconsist shift meaning for forward and backwards movements.
+nnoremap , ;
+nnoremap ; ,
 
 " Set folding by marker for this file only.
 " vim:foldmethod=marker
