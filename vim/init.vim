@@ -12,6 +12,10 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
 Plug 'mattn/emmet-vim'
+Plug 'ternjs/tern_for_vim'
+Plug 'wavded/vim-stylus'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 " }}}
 
@@ -23,13 +27,14 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
-" SuperTab
-
 " Emmet
 " Right after opening vim, remap Shift-Tab to Emmet expansion.
 " Doing it this way is necessary since SuperTab would override a normal mapping
 " since it loads after vimrc.
 autocmd VimEnter * imap <S-Tab> <C-Y>,
+
+" Airline
+set laststatus=2 " Always show statusline
 
 " }}}
 
@@ -72,6 +77,10 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" Don't actually close unsaved buffers, just hide them while
+" you edit the other buffer.
+set hidden
+
 set incsearch " Show search results as you type
 set hlsearch " Highlight matching search results
 
@@ -79,6 +88,24 @@ set hlsearch " Highlight matching search results
 set clipboard=unnamed
 
 set omnifunc=syntaxcomplete#Complete
+
+" Persistent undo
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
+
+" Use space as the leader key.
+map <space> <leader>
+
+" Jump to alternate file by double-tapping the leader
+map <leader><space> :b #<CR>
+
+" Move quicker by prepending the leader key.
+map <leader>j 10j
+map <leader>k 10k
+map <leader>h 20h
+map <leader>l 20l
 
 " Easily reload the vim config.
 command! Reload so $MYVIMRC
@@ -91,6 +118,9 @@ command! Q q
 command! Wq wq
 command! WQ wq
 
+
+" Automatically clear search highlights when entering insert mode.
+autocmd InsertEnter * :nohlsearch | redraw
 
 
 " Indent pasted text to match target.
