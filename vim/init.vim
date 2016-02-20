@@ -95,6 +95,8 @@ set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
+set colorcolumn=80
+
 " Use space as the leader key.
 map <space> <leader>
 
