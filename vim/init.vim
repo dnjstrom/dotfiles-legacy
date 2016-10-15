@@ -2,11 +2,11 @@
 " Plugins {{{
 call plug#begin()
 Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
+Plug 'lifepillar/vim-solarized8'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'tmhedberg/matchit'
-Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'ervandew/supertab'
@@ -16,6 +16,11 @@ Plug 'ternjs/tern_for_vim'
 Plug 'wavded/vim-stylus'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mxw/vim-jsx'
+"Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter' 
 call plug#end()
 " }}}
 
@@ -40,6 +45,8 @@ set laststatus=2 " Always show statusline
 
 " Theme {{{
 syntax enable
+set termguicolors
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 colorscheme gruvbox
 
@@ -95,7 +102,7 @@ set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
-set colorcolumn=80
+set colorcolumn=81
 
 " Use space as the leader key.
 map <space> <leader>
@@ -108,6 +115,9 @@ map <leader>j 10j
 map <leader>k 10k
 map <leader>h 20h
 map <leader>l 20l
+
+nnoremap j gj
+nnoremap k gk
 
 " Clear highlights
 map <leader>c :nohl<CR>
