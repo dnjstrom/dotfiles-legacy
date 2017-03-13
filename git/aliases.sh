@@ -7,10 +7,10 @@ alias gp="git pull --rebase"
 alias gP="git push"
 alias gr="git rebase"
 alias gs="git status"
-alias gd="git -c color.ui=always status -v -v | less -REX"
+alias gd="git -c color.ui=always status -v -v | less -RX"
 alias gl="git log --oneline"
 #alias gl="git log --pretty=format:\"%C(auto)%h %<(8,trunc)%aN %Cgreen%s %n%w(80,17,17)%-b\""
 #alias gl="git log --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 #git log --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %Cgreen%cr %C(bold blue)%an%Creset %n%s%n%b' --abbrev-commit
 alias gm="git merge"
-
+alias geach="git submodule foreach"
