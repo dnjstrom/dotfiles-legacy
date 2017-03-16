@@ -11,6 +11,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'w0ng/vim-hybrid'
+Plug 'kristijanhusak/vim-hybrid-material'
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -51,6 +53,8 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-endwise'
+Plug 'ap/vim-css-color'
 
 " Configuration
 Plug 'editorconfig/editorconfig-vim'
@@ -78,6 +82,7 @@ map <leader>p :CtrlPBuffer<CR>
 
 " NERDTree
 map <leader>n :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
 
 
@@ -90,25 +95,16 @@ autocmd VimEnter * imap <S-Tab> <C-Y>,
 " vim-jsx
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-" Deoplete {{{
+" Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay=50
+
 "
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>""
-"}}}
 
 " Syntastic recomended settings
 set statusline+=%#warningmsg#
@@ -151,6 +147,14 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 0
 
+" Tabularize
+nmap <leader>a= :Tabularize /=<CR>
+vmap <leader>a= :Tabularize /=<CR>
+nmap <leader>a: :Tabularize /:\zs<CR>
+vmap <leader>a: :Tabularize /:\zs<CR>
+nmap <leader>a, :Tabularize /,\zs<CR>
+vmap <leader>a, :Tabularize /,\zs<CR>
+
 
 "}}}
 
@@ -160,7 +164,7 @@ set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set background=dark
-colorscheme gruvbox
+colorscheme hybrid
 "}}}
 
 set shell=/bin/bash
@@ -169,6 +173,7 @@ set shell=/bin/bash
 filetype plugin on
 filetype indent on
 
+set cursorline
 set number " Show line numbers in left gutter
 set ruler " Display the current line and column
 set showmatch " Highlight matching brackets
