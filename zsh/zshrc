@@ -74,6 +74,10 @@ export PATH=$GRAMO_DIR/bin:$PATH
 #eval "$(gps bash_complete)"
 #
 
+# Haskell stack binaries
+STACK_PATH=/Users/dstr/.local/bin 
+export PATH=$STACK_PATH/bin:$PATH
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 

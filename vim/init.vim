@@ -3,6 +3,10 @@ set langmenu=en_US.UTF-8
 " Plugins {{{
 call plug#begin()
 
+" Backend features
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/neomru.vim'
+
 " Looks
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
@@ -13,6 +17,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
 Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'jnurmine/Zenburn'
+Plug 'tomasr/molokai'
+Plug 'zeis/vim-kolor'
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -21,6 +28,9 @@ Plug 'ternjs/tern_for_vim'
 Plug 'eagletmt/neco-ghc'
 Plug 'Shougo/neco-vim'
 Plug 'vim-ruby/vim-ruby'
+Plug 'craigemery/vim-autotag'
+Plug 'majutsushi/tagbar'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Snippets
 Plug 'Shougo/neosnippet'
@@ -33,6 +43,10 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'wavded/vim-stylus'
 Plug 'othree/yajs.vim' " es6
 Plug 'othree/es.next.syntax.vim' " es7+
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'vim-scripts/haskell.vim'
+Plug 'vim-scripts/cabal.vim'
 
 " Features
 Plug 'ctrlpvim/ctrlp.vim'
@@ -55,6 +69,7 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 Plug 'ap/vim-css-color'
+Plug 'qwertologe/nextval.vim'
 
 " Configuration
 Plug 'editorconfig/editorconfig-vim'
@@ -74,16 +89,11 @@ call plug#end()
 " Neosnippets
 let g:neosnippet#snippets_directory='~/.dotfiles/vim/snippets'
 
-" CtrlP
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_map = '<leader><space>'
-map <leader>p :CtrlPBuffer<CR>
-
-
 " NERDTree
 map <leader>n :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
 
 
 " Emmet
@@ -115,13 +125,16 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_loc_list_height=3
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_check_on_wq = 1
 let syntastic_mode_map = { 'passive_filetypes': ['html', 'hbs'] }
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
 " Ack.vim
 if executable('ag')
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'ag -i -Q --vimgrep'
 endif
 
 " Easymotion
@@ -143,7 +156,7 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 0
 
@@ -155,6 +168,31 @@ vmap <leader>a: :Tabularize /:\zs<CR>
 nmap <leader>a, :Tabularize /,\zs<CR>
 vmap <leader>a, :Tabularize /,\zs<CR>
 
+" Denite
+let g:denite_source_history_yank_enable=1
+if executable('ag')
+  let g:denite_source_grep_command='ag'
+  let g:denite_source_grep_default_opts='--hidden --nocolor --nogroup -S -U'
+  let g:denite_source_grep_recursive_opt=''
+endif
+" call denite#filters#matcher_default#use(['matcher_fuzzy'])
+" call denite#filters#sorter_default#use(['sorter_rank'])
+
+autocmd FileType Denite call s:denite_settings()
+function! s:denite_settings()
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(denite_move_to_next_line)
+  imap <buffer> <C-k>   <Plug>(denite_move_to_previous_line)
+endfunction
+
+nnoremap <leader><space> :Denite file_rec<cr>
+nnoremap <leader>p :Denite buffer<cr>
+nnoremap <leader>r :Denite outline<cr>
+nnoremap <leader>/ :Denite line<cr>
+" nnoremap <leader>/ :Denite -buffer-name=ag -no-empty -no-split -auto-preview grep:.<cr>
+
+nmap <silent> <unique> + <Plug>nextvalInc
+nmap <silent> <unique> - <Plug>nextvalDec
 
 "}}}
 
@@ -164,7 +202,13 @@ set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set background=dark
-colorscheme hybrid
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_sign_column='bg0'
+colorscheme gruvbox
+highlight CursorLine guibg=#32302f
+highlight CursorLineNr guibg=#32302f
+highlight Folded guibg=#32302f
 "}}}
 
 set shell=/bin/bash
@@ -203,6 +247,7 @@ set hidden
 
 set incsearch " Show search results as you type
 set hlsearch " Highlight matching search results
+set nohlsearch "Don't hilight search results
 
 " Use the system clipboard as the default clipboard.
 set clipboard=unnamed
@@ -215,9 +260,17 @@ set sidescroll=1
 
 " Persistent undo
 set undofile
-set undodir=$HOME/.vim/undo
+set undodir=$HOME/.vim/undo//
 set undolevels=1000
 set undoreload=10000
+
+" Global backup directory
+set backupdir=$HOME/.vim/backup//
+set directory=$HOME/.vim/backup//
+
+" Define how files are saved in order to support file watchers
+set backupcopy=yes
+
 
 "set colorcolumn=81
 
@@ -243,7 +296,7 @@ command! WQ wq
 
 
 " Automatically clear search highlights when entering insert mode.
-autocmd InsertEnter * :nohlsearch | redraw
+"autocmd InsertEnter * :nohlsearch | redraw
 
 
 " Indent pasted text to match target.
@@ -264,6 +317,14 @@ set splitright
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
 set laststatus=2 " Always show statusline
+
+nnoremap å <C-]>
+
+" Haskell bindings
+map <silent> tw :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
 
 " Set folding by marker for this file only.
 " vim:foldmethod=marker

@@ -37,3 +37,7 @@ if test -e ~/.bashrc; then
 else
 	echo "No .bashrc present"
 fi
+
+# Set global gitignore
+git config --global core.excludesfile '~/.dotfiles/git/gitignore'
+
