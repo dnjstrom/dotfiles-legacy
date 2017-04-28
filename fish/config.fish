@@ -41,4 +41,4 @@ function tmux_func
   end
 end
 
-set -gx PATH $PATH /Users/dstr/.local/bin
+# set -gx PATH $PATH /Users/dstr/.local/bin
