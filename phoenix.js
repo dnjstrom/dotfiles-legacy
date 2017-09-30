@@ -103,10 +103,10 @@ const bottomright = simpleRule((window, screen) => {
 const fullsize = simpleRule((window, screen) => {
   const gutter = screen.width * 0.02
   window.setFrame({
-    x: screen.x,
-    y: screen.y,
-    width: screen.width,
-    height: screen.height
+    x: screen.x + gutter,
+    y: screen.y + gutter,
+    width: screen.width - 2 * gutter,
+    height: screen.height - 2 * gutter
   })
 })
 
