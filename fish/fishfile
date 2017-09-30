@@ -1,9 +1,6 @@
 edc/bass
 barnybug/docker-fish-completion
-fisherman/done
 fisherman/getopts
-fisherman/humanize_duration
-fisherman/nvm
 rafaelrinaldi/pure
 fisherman/rbenv
 fisherman/z

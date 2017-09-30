@@ -1,5 +1,10 @@
+# Environment variables
 # Set english locale
-set -gx  LC_ALL en_US.UTF-8  
+set -x  LC_ALL en_US.UTF-8  
+set -x EDITOR nvim
+set -x RSENSE_HOME /Users/dstr/.rbenv/shims/rsense
+set -x PATH $PATH /Users/dstr/.local/bin
+
 
 if not set -q abbrs_initialized
   set -U abbrs_initialized
@@ -24,6 +29,7 @@ if not set -q abbrs_initialized
   abbr cde 'cd /Users/dstr/Projects/Skalar/gramo/apps/echo'
   abbr cdf 'cd /Users/dstr/Projects/Skalar/gramo/apps/echo-front'
   abbr cd- 'cd -'
+  abbr y 'yarn'
 end
 
 
@@ -31,7 +37,6 @@ function gps
   /Users/dstr/Projects/Skalar/gramo/bin/gps $argv
 end
 
-set -x RSENSE_HOME /Users/dstr/.rbenv/shims/rsense
 
 function tmux_func
   if tmux ls | grep -vq attached
@@ -40,5 +45,3 @@ function tmux_func
     tmux
   end
 end
-
-# set -gx PATH $PATH /Users/dstr/.local/bin

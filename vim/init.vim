@@ -9,8 +9,6 @@ Plug 'Shougo/neomru.vim'
 
 " Looks
 Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
-Plug 'lifepillar/vim-solarized8'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline'
@@ -20,6 +18,12 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'jnurmine/Zenburn'
 Plug 'tomasr/molokai'
 Plug 'zeis/vim-kolor'
+Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'jacoborus/tender.vim'
+Plug 'KeitaNakamura/neodark.vim'
+
+
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -185,6 +189,11 @@ function! s:denite_settings()
   imap <buffer> <C-k>   <Plug>(denite_move_to_previous_line)
 endfunction
 
+"Change file_rec command.
+call denite#custom#var('file_rec', 'command',
+      \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+
 nnoremap <leader><space> :Denite file_rec<cr>
 nnoremap <leader>p :Denite buffer<cr>
 nnoremap <leader>r :Denite outline<cr>
@@ -197,18 +206,15 @@ nmap <silent> <unique> - <Plug>nextvalDec
 "}}}
 
 " Theme {{{
+
 syntax enable
 set termguicolors
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 set background=dark
-let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark='medium'
-let g:gruvbox_sign_column='bg0'
-colorscheme gruvbox
-highlight CursorLine guibg=#32302f
-highlight CursorLineNr guibg=#32302f
-highlight Folded guibg=#32302f
+colorscheme hybrid
+"let g:airline_theme='onedark'
+
+
 "}}}
 
 set shell=/bin/bash
