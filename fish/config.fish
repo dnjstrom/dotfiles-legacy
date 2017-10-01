@@ -3,7 +3,7 @@
 set -x  LC_ALL en_US.UTF-8  
 set -x EDITOR nvim
 set -x RSENSE_HOME /Users/dstr/.rbenv/shims/rsense
-set -x PATH $PATH /Users/dstr/.local/bin
+# set -x PATH $PATH /Users/dstr/.local/bin
 
 
 if not set -q abbrs_initialized
