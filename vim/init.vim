@@ -23,7 +23,7 @@ Plug 'zeis/vim-kolor'
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'ternjs/tern_for_vim'
 Plug 'eagletmt/neco-ghc'
 Plug 'Shougo/neco-vim'
@@ -174,6 +174,8 @@ if executable('ag')
   let g:denite_source_grep_command='ag'
   let g:denite_source_grep_default_opts='--hidden --nocolor --nogroup -S -U'
   let g:denite_source_grep_recursive_opt=''
+  let g:denite_source_rec_async_command = ['ag', '--follow', '--nogroup', '--nocolor', '--hidden', '-g', '']
+  call denite#custom#var("file_rec", "command", ['ag', '--follow', '--nogroup', '--nocolor', '--hidden', '-g', ''])
 endif
 " call denite#filters#matcher_default#use(['matcher_fuzzy'])
 " call denite#filters#sorter_default#use(['sorter_rank'])
@@ -194,6 +196,8 @@ nnoremap <leader>/ :Denite line<cr>
 nmap <silent> <unique> + <Plug>nextvalInc
 nmap <silent> <unique> - <Plug>nextvalDec
 
+let g:tern#command = ["/Users/dstr/.nvm/versions/node/v7.9.0/bin/node", '/Users/dstr/.dotfiles/vim/plugged/tern_for_vim/node_modules/tern/bin/tern', '--no-port-file']
+
 "}}}
 
 " Theme {{{
@@ -201,14 +205,14 @@ syntax enable
 set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-set background=dark
-let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark='medium'
-let g:gruvbox_sign_column='bg0'
-colorscheme gruvbox
-highlight CursorLine guibg=#32302f
-highlight CursorLineNr guibg=#32302f
-highlight Folded guibg=#32302f
+set background=light
+"let g:gruvbox_italic=1
+"let g:gruvbox_contrast_dark='medium'
+"let g:gruvbox_sign_column='bg0'
+colorscheme base16-github
+"highlight CursorLine guibg=#32302f
+"highlight CursorLineNr guibg=#32302f
+"highlight Folded guibg=#32302f
 "}}}
 
 set shell=/bin/bash
