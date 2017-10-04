@@ -22,7 +22,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'jacoborus/tender.vim'
 Plug 'KeitaNakamura/neodark.vim'
-
+Plug 'rakr/vim-one'
+Plug 'arcticicestudio/nord-vim'
 
 
 " Autocompletion
@@ -206,15 +207,12 @@ nmap <silent> <unique> - <Plug>nextvalDec
 "}}}
 
 " Theme {{{
-
-syntax enable
 set termguicolors
+syntax enable
 
 set background=dark
-colorscheme hybrid
-"let g:airline_theme='onedark'
-
-
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
 "}}}
 
 set shell=/bin/bash
