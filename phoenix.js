@@ -110,6 +110,14 @@ const fullsize = simpleRule((window, screen) => {
   })
 })
 
+const fullscreen = () => {
+  const window = Window.focused ()
+
+  if ( !window ) return
+
+  window.setFullScreen ( !window.isFullScreen () )
+}
+
 //const ML = {
 //  switchMonitors: function() {
 //    Window.focused().setFrame(
@@ -125,6 +133,7 @@ const fullsize = simpleRule((window, screen) => {
 
 // Key.on("space", ["shift", "alt"], ML.fullscreen)
 Key.on("space", ["shift", "alt"], fullsize)
+Key.on("f", ["shift", "alt"], fullscreen)
 
 // Key.on("f", ["shift", "alt"], ML.switchMonitors)
 
