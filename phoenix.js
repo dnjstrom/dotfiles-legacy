@@ -32,16 +32,16 @@ const left = simpleRule((window, screen) => {
   window.setFrame({
     x: screen.x,
     y: screen.y,
-    width: screen.width / 2,
+    width: 2 * (screen.width / 3),
     height: screen.height
   })
 })
 
 const right = simpleRule((window, screen) => {
   window.setFrame({
-    x: screen.x + screen.width / 2,
+    x: screen.x + 2 * (screen.width / 3),
     y: screen.y,
-    width: screen.width / 2,
+    width: screen.width / 3,
     height: screen.height
   })
 })
@@ -68,16 +68,16 @@ const topleft = simpleRule((window, screen) => {
   window.setFrame({
     x: screen.x,
     y: screen.y,
-    width: screen.width / 2,
+    width: 2 * (screen.width / 3),
     height: screen.height / 2
   })
 })
 
 const topright = simpleRule((window, screen) => {
   window.setFrame({
-    x: screen.x + screen.width / 2,
+    x: screen.x + 2 * (screen.width / 3),
     y: screen.y,
-    width: screen.width / 2,
+    width: screen.width / 3,
     height: screen.height / 2
   })
 })
@@ -86,16 +86,16 @@ const bottomleft = simpleRule((window, screen) => {
   window.setFrame({
     x: screen.x,
     y: screen.y + screen.height / 2,
-    width: screen.width / 2,
+    width: 2 * (screen.width / 3),
     height: screen.height / 2
   })
 })
 
 const bottomright = simpleRule((window, screen) => {
   window.setFrame({
-    x: screen.x + screen.width / 2,
+    x: screen.x + 2 * (screen.width / 3),
     y: screen.y + screen.height / 2,
-    width: screen.width / 2,
+    width: screen.width / 3,
     height: screen.height / 2
   })
 })
