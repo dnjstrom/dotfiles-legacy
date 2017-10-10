@@ -23,7 +23,7 @@ if not set -q abbrs_initialized
   abbr gr 'git rebase'
   abbr gs 'git status'
   abbr gd 'git -c color.ui=always status -v -v | less -RX'
-  abbr gl 'git log --oneline'
+  abbr gl 'git log --oneline --graph'
   abbr gb 'git branch'
   abbr geach 'git submodule foreach'
   abbr grekt 'git reset --hard HEAD'
