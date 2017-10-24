@@ -13,13 +13,19 @@ Plug 'tpope/vim-repeat'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
 Plug 'tmhedberg/matchit'
-Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'ElmCast/elm-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'othree/yajs.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'mxw/vim-jsx'
+Plug 'sbdchd/neoformat'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'mattn/emmet-vim'
+Plug 'mhinz/vim-signify'
+Plug 'jiangmiao/auto-pairs'
+Plug 'chrisbra/Colorizer'
 call plug#end()
 
 
@@ -140,10 +146,17 @@ let g:ycm_semantic_triggers = {
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-map <C-n> :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<CR>
+map <leader>n :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 
 map <leader> <Plug>(easymotion-prefix)
 nmap s <Plug>(easymotion-s2)
 
+let g:jsx_ext_required = 0
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+augroup END
