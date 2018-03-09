@@ -6,6 +6,10 @@ set -x EDITOR nvim
 set -x RSENSE_HOME /Users/dstr/.rbenv/shims/rsense
 # set -x PATH $PATH /Users/dstr/.local/bin
 
+# Set up secret environment variables
+eval (cat ./config.secret.fish)
+
+eval (hub alias -s)
 
 if not set -q abbrs_initialized
   set -U abbrs_initialized
