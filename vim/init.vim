@@ -4,7 +4,7 @@ call plug#begin()
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'w0rp/ale'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -26,6 +26,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-signify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'chrisbra/Colorizer'
+Plug 'jacoborus/tender.vim'
 call plug#end()
 
 
@@ -33,8 +34,8 @@ set termguicolors
 syntax enable
 
 set background=dark
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
+colorscheme tender
+let g:airline_theme='tender'
 
 set shell=/bin/bash
 
