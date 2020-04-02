@@ -3,18 +3,26 @@
 set -x  LC_ALL en_US.UTF-8  
 set -x LANG en_US.UTF-8  
 set -x EDITOR nvim
-set -x RSENSE_HOME /Users/dstr/.rbenv/shims/rsense
-# set -x PATH $PATH /Users/dstr/.local/bin
+set -x RSENSE_HOME /Users/daniel/.rbenv/shims/rsense
+set -x PATH $PATH /Users/daniel/.local/bin
+set -x PATH $PATH /Users/daniel/.cargo/bin
+set -x PATH $PATH /Users/daniel/go/bin
+set -x PATH $PATH /Users/daniel/.cabal/bin
 
 # Set up secret environment variables
-eval (cat ./config.secret.fish)
+source ~/.dotfiles/fish/config.secret.fish
 
 eval (hub alias -s)
+
+# function ls
+#   command ls $argv | lolcat
+# end
 
 if not set -q abbrs_initialized
   set -U abbrs_initialized
   
   abbr vim 'nvim'
+  abbr d 'docker'
   abbr dc 'docker-compose'
   abbr ga 'git add'
   abbr gA 'git add -A :/'
@@ -31,17 +39,15 @@ if not set -q abbrs_initialized
   abbr gb 'git branch'
   abbr geach 'git submodule foreach'
   abbr grekt 'git reset --hard HEAD'
-  abbr cde 'cd /Users/dstr/Projects/Skalar/gramo/apps/echo'
-  abbr cdf 'cd /Users/dstr/Projects/Skalar/gramo/apps/echo-front'
   abbr cd- 'cd -'
   abbr y 'yarn'
+  abbr ys 'yarn start'
+  abbr yd 'yarn dev'
+  abbr yb 'yarn build'
+  abbr l 'la'
+  abbr c 'code .'
+  abbr gitclean 'git checkout master; and git fetch -p; and git pull; and git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d; and git fetch --prune'
 end
-
-
-function gps
-  /Users/dstr/Projects/Skalar/gramo/bin/gps $argv
-end
-
 
 function tmux_func
   if tmux ls | grep -vq attached
@@ -50,3 +56,6 @@ function tmux_func
     tmux
   end
 end
+
+# opam configuration
+source /Users/daniel/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

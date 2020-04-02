@@ -1,6 +1,7 @@
 set langmenu=en_US.UTF-8
 
 call plug#begin()
+Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -27,6 +28,8 @@ Plug 'mhinz/vim-signify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'chrisbra/Colorizer'
 Plug 'jacoborus/tender.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
 call plug#end()
 
 
@@ -34,8 +37,8 @@ set termguicolors
 syntax enable
 
 set background=dark
-colorscheme tender
-let g:airline_theme='tender'
+colorscheme base16-snazzy
+let g:airline_theme='base16'
 
 set shell=/bin/bash
 
