@@ -3,6 +3,10 @@
 
 brew install ctop nvm tmux reattach-to-user-namespace fish neovim ctags
 
+# Fira Code
+brew tap homebrew/cask-fonts
+brew cask install font-fira-code
+
 # Fisher
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
