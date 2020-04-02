@@ -7,3 +7,6 @@ npm i -g yarn tern
 
 # Fisher
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+
+# TPM
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
