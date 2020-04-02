@@ -3,7 +3,6 @@
 set -x  LC_ALL en_US.UTF-8  
 set -x LANG en_US.UTF-8  
 set -x EDITOR nvim
-set -x RSENSE_HOME /Users/daniel/.rbenv/shims/rsense
 set -x PATH $PATH /Users/daniel/.local/bin
 set -x PATH $PATH /Users/daniel/.cargo/bin
 set -x PATH $PATH /Users/daniel/go/bin
@@ -13,6 +12,10 @@ set -x PATH $PATH /Users/daniel/.cabal/bin
 source ~/.dotfiles/fish/config.secret.fish
 
 eval (hub alias -s)
+
+# Clear greeting message on startup
+set fish_greeting
+
 
 # function ls
 #   command ls $argv | lolcat
