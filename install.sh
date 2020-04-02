@@ -1,7 +1,7 @@
 # Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-brew install ctop nvm tmux reattach-to-user-namespace fish neovim ctags
+brew install ctop nvm tmux reattach-to-user-namespace fish neovim ctags starship
 
 # Fira Code
 brew tap homebrew/cask-fonts
