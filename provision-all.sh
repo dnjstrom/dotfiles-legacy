@@ -7,7 +7,10 @@
 ln -s ~/.dotfiles/phoenix.js ~/.phoenix.js
 
 # Git
-ln -s ~/.dotfiles/gitignore ~/.gitignore
+ln -s ~/.dotfiles/git/gitignore ~/.gitignore
+
+# Hyper
+ln -s ~/.dotfiles/hyper.js ~/.hyper.js
 
 # Vim
 # rm -fr ~/.vim
