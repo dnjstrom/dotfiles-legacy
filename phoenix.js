@@ -40,10 +40,115 @@ const simpleRule = (rule) => () => {
   });
 };
 
+const oneHalf = (x) => x / 2;
 const oneThird = (x) => x / 3;
 const twoThirds = (x) => (2 * x) / 3;
+const oneFourth = (x) => x / 4;
+const twoFourth = (x) => (2 * x) / 4;
+const threeFourth = (x) => (3 * x) / 4;
+const threeEigths = (x) => (3 * x) / 8;
 
 /* Operations */
+
+const leftHalf = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: screen.x + gutter,
+    y: screen.y + gutter,
+    width: Math.round(oneHalf(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const rightHalf = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: Math.round(screen.x + oneHalf(screen.width) + 0.5 * gutter),
+    y: screen.y + gutter,
+    width: Math.round(oneHalf(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const firstQuarter = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: screen.x + gutter,
+    y: screen.y + gutter,
+    width: Math.round(oneFourth(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const leftTwoQuarter = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: screen.x + gutter,
+    y: screen.y + gutter,
+    width: Math.round(twoFourth(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const firstThreeEights = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: screen.x + gutter,
+    y: screen.y + gutter,
+    width: Math.round(threeEigths(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const secondThreeEights = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: Math.round(screen.x + threeEigths(screen.width) + 0.5 * gutter),
+    y: screen.y + gutter,
+    width: Math.round(threeEigths(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const secondQuarter = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: Math.round(screen.x + oneFourth(screen.width) + 0.5 * gutter),
+    y: screen.y + gutter,
+    width: Math.round(oneFourth(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const thirdQuarter = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: Math.round(screen.x + twoFourth(screen.width) + 0.5 * gutter),
+    y: screen.y + gutter,
+    width: Math.round(oneFourth(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const forthQuarter = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: Math.round(screen.x + threeFourth(screen.width) + 0.5 * gutter),
+    y: screen.y + gutter,
+    width: Math.round(oneFourth(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
+
+const middleTwoQuarters = (window) => {
+  const screen = window.screen().flippedVisibleFrame();
+  window.setFrame({
+    x: Math.round(screen.x + oneFourth(screen.width) + 0.5 * gutter),
+    y: screen.y + gutter,
+    width: Math.round(twoFourth(screen.width) - 1.5 * gutter),
+    height: screen.height - 2 * gutter,
+  });
+};
 
 const left = (window) => {
   const screen = window.screen().flippedVisibleFrame();
@@ -143,86 +248,56 @@ const fullscreen = () => {
 
 const devLayout = [
   {
-    "": (window) => {
-      // Screen 0 is always the primary window
-      moveToScreen(0)(window);
-    },
-  },
-  {
     "Google Chrome": (window) => {
-      moveToScreen(tallMonitor)(window);
+      firstQuarter(window);
     },
     Code: (window) => {
-      moveToScreen(tallMonitor)(window);
-      left(window);
+      middleTwoQuarters(window);
     },
     Hyper: (window) => {
-      moveToScreen(tallMonitor)(window);
-      right(window);
+      forthQuarter(window);
     },
     "": (window) => {
-      moveToScreen(offMonitor)(window);
+      forthQuarter(window);
     },
   },
+];
+
+const devLayout2 = [
   {
     "Google Chrome": (window) => {
-      moveToScreen(tallMonitor)(window);
+      firstThreeEights(window);
     },
     Code: (window) => {
-      moveToScreen(middleMonitor)(window);
-      left(window);
+      secondThreeEights(window);
     },
     Hyper: (window) => {
-      moveToScreen(middleMonitor)(window);
-      right(window);
+      forthQuarter(window);
     },
     "": (window) => {
-      moveToScreen(offMonitor)(window);
+      forthQuarter(window);
     },
   },
 ];
 
 const adminLayout = [
   {
-    "": (window) => {
-      // Screen 0 is always the primary window
-      moveToScreen(0)(window);
-    },
-  },
-  {
     "Google Chrome": (window) => {
-      moveToScreen(middleMonitor)(window);
-    },
-    Code: (window) => {
-      moveToScreen(middleMonitor)(window);
-      left(window);
-    },
-    Hyper: (window) => {
-      moveToScreen(middleMonitor)(window);
-      right(window);
-    },
-    "": (window) => {
-      moveToScreen(offMonitor)(window);
-    },
-  },
-  {
-    "Google Chrome": (window) => {
-      moveToScreen(middleMonitor)(window);
+      middleTwoQuarters(window);
     },
     Jira: (window) => {
-      moveToScreen(tallMonitor)(window);
-      up(window);
+      firstQuarter(window);
+      down(window);
     },
     Trello: (window) => {
-      moveToScreen(tallMonitor)(window);
+      firstQuarter(window);
       up(window);
     },
     Mail: (window) => {
-      moveToScreen(tallMonitor)(window);
-      down(window);
+      forthQuarter(window);
     },
     "": (window) => {
-      moveToScreen(offMonitor)(window);
+      forthQuarter(window);
     },
   },
 ];
@@ -244,7 +319,7 @@ const applyLayout = (layoutScheme) => {
 
 let currentLayout = "none";
 const toggleLayout = () => {
-  const layouts = ["dev", "admin"];
+  const layouts = ["dev", "dev2", "admin"];
   const currentIndex = layouts.indexOf(currentLayout);
   const nextIndex = (currentIndex + 1) % layouts.length;
 
@@ -253,6 +328,9 @@ const toggleLayout = () => {
   Phoenix.log(JSON.stringify(currentLayout, null, 2));
 
   switch (currentLayout) {
+    case "dev2":
+      applyLayout(devLayout2);
+      break;
     case "admin":
       applyLayout(adminLayout);
       break;
@@ -308,8 +386,8 @@ Key.on("space", ["shift", "alt"], fullsizeFocusedWindow);
 Key.on("space", ["shift", "alt", "ctrl", "cmd"], toggleLayout);
 Key.on("f", ["shift", "alt"], fullscreen);
 
-Key.on("h", ["shift", "alt"], () => left(Window.focused()));
-Key.on("l", ["shift", "alt"], () => right(Window.focused()));
+Key.on("h", ["shift", "alt"], () => leftHalf(Window.focused()));
+Key.on("l", ["shift", "alt"], () => rightHalf(Window.focused()));
 Key.on("k", ["shift", "alt"], () => up(Window.focused()));
 Key.on("j", ["shift", "alt"], () => down(Window.focused()));
 
@@ -318,13 +396,9 @@ Key.on("w", ["shift", "alt", "ctrl"], topright);
 Key.on("a", ["shift", "alt", "ctrl"], bottomleft);
 Key.on("s", ["shift", "alt", "ctrl"], bottomright);
 
-Key.on("q", ["shift", "alt"], () =>
-  moveToScreen(tallMonitor)(Window.focused())
-);
-Key.on("w", ["shift", "alt"], () =>
-  moveToScreen(middleMonitor)(Window.focused())
-);
-Key.on("e", ["shift", "alt"], () => moveToScreen(offMonitor)(Window.focused()));
+Key.on("q", ["shift", "alt"], () => firstQuarter(Window.focused()));
+Key.on("e", ["shift", "alt"], () => forthQuarter(Window.focused()));
+Key.on("w", ["shift", "alt"], () => middleTwoQuarters(Window.focused()));
 
 Key.on("h", ["shift", "alt", "ctrl"], moveToRelativeSpace(-1));
 Key.on("l", ["shift", "alt", "ctrl"], moveToRelativeSpace(1));
