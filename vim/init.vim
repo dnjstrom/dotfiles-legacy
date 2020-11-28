@@ -1,34 +1,41 @@
 set langmenu=en_US.UTF-8
 
 call plug#begin()
-Plug 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
-" Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+
+" Features
+Plug 'neovim/nvim-lspconfig'
 Plug 'scrooloose/nerdtree'
+Plug 'sbdchd/neoformat'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-repeat'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-unimpaired'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-surround'
-Plug 'ElmCast/elm-vim'
-Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'othree/yajs.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'mxw/vim-jsx'
-Plug 'sbdchd/neoformat'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'mattn/emmet-vim'
-Plug 'mhinz/vim-signify'
+Plug 'mg979/vim-visual-multi'
 Plug 'jiangmiao/auto-pairs'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'mattn/emmet-vim'
+Plug 'nvim-lua/completion-nvim'
+
+" Visualization
+Plug 'vim-airline/vim-airline'
+Plug 'mhinz/vim-signify'
 Plug 'chrisbra/Colorizer'
-Plug 'jacoborus/tender.vim'
+
+" Javascript
+Plug 'othree/yajs.vim'
+Plug 'othree/es.next.syntax.vim'
+Plug 'mxw/vim-jsx'
+
+" Typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
+
+" Themes
+Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
 
@@ -37,7 +44,10 @@ syntax enable
 
 set background=dark
 colorscheme base16-snazzy
+hi Normal guibg=NONE ctermbg=NONE
+
 let g:airline_theme='base16'
+let g:airline_powerline_fonts = 1
 
 set shell=/bin/bash
 
@@ -75,7 +85,7 @@ set hidden
 
 set incsearch " Show search results as you type
 set hlsearch " Highlight matching search results
-set nohlsearch "Don't hilight search results
+set nohlsearch " Don't hilight search results
 
 " Use the system clipboard as the default clipboard.
 set clipboard=unnamed
@@ -131,35 +141,72 @@ nnoremap p ]p
 " Make 'yank rest of line' consistent with 'delete' and 'change'.
 nnoremap Y y$
 
+inoremap § <ESC>
+vnoremap § <ESC>
+
 " Set settings and keymaps for split windows
 set splitbelow
 set splitright
 
-" Workaround for https://github.com/christoomey/vim-tmux-navigator#it-doesnt-work-in-neovim-specifically-c-h
-nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
-
 set laststatus=2 " Always show statusline
 
-nnoremap å <C-]>
 
 " Plugin specic settings
-let g:ycm_semantic_triggers = {
-     \ 'elm' : ['.'],
-     \}
-
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-map <leader>f :NERDTreeFind<CR>
-map <leader>n :NERDTreeToggle<CR>
+" Automatically format on save
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+augroup END
+
+function MyNerdToggle()
+  if &filetype == 'nerdtree'
+      :NERDTreeToggle
+  else
+      :NERDTreeFind
+  endif
+endfunction
+
+nnoremap <leader><space> :call MyNerdToggle()<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 
 map <leader> <Plug>(easymotion-prefix)
 nmap s <Plug>(easymotion-s2)
 
-let g:jsx_ext_required = 0
+" Easy movement in quickfix window
+noremap <A-n> :cn<CR>
+noremap ‘ :cn<CR>
+noremap <A-p> :cn<CR>
+noremap π :cp<CR>
 
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * Neoformat
-augroup END
+
+" Language servers
+lua <<EOF
+require'lspconfig'.tsserver.setup{}
+EOF
+
+autocmd Filetype javascript setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+
+" Autocompletion
+autocmd BufEnter * lua require'completion'.on_attach()
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c

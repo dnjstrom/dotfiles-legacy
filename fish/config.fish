@@ -7,6 +7,8 @@ set -x PATH $PATH /Users/daniel/.local/bin
 set -x PATH $PATH /Users/daniel/.cargo/bin
 set -x PATH $PATH /Users/daniel/go/bin
 set -x PATH $PATH /Users/daniel/.cabal/bin
+set -x PATH $PATH /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+
 
 # Set up secret environment variables
 source ~/.dotfiles/fish/config.secret.fish

@@ -16,8 +16,8 @@
 
 const gutter = 14;
 
-const tallMonitor = 2;
-const middleMonitor = 1;
+const tallMonitor = 1;
+const middleMonitor = 2;
 const offMonitor = 0;
 
 /* Helpers */
@@ -151,6 +151,7 @@ const devLayout = [
   {
     "Google Chrome": (window) => {
       moveToScreen(tallMonitor)(window);
+      left(window);
     },
     Code: (window) => {
       moveToScreen(tallMonitor)(window);
@@ -192,6 +193,7 @@ const adminLayout = [
   {
     "Google Chrome": (window) => {
       moveToScreen(middleMonitor)(window);
+      left(window);
     },
     Code: (window) => {
       moveToScreen(middleMonitor)(window);
