@@ -14,9 +14,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi'
 Plug 'jiangmiao/auto-pairs'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'mattn/emmet-vim'
 Plug 'nvim-lua/completion-nvim'
+
+" Tmux integration
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Visualization
 Plug 'vim-airline/vim-airline'
@@ -90,9 +94,6 @@ set nohlsearch " Don't hilight search results
 " Use the system clipboard as the default clipboard.
 set clipboard=unnamed
 
-" Turn on autocompletion
-set omnifunc=syntaxcomplete#Complete
-
 " Use an intuitive horizontal scroll
 set sidescroll=1
 
@@ -109,6 +110,7 @@ set directory=$HOME/.vim/backup//
 " Define how files are saved in order to support file watchers
 set backupcopy=yes
 
+set autoread
 
 " Use space as the leader key.
 map <space> <leader>
