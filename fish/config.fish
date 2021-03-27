@@ -3,11 +3,15 @@
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 set -x EDITOR nvim
-set -x PATH $PATH /Users/daniel/.local/bin
-set -x PATH $PATH /Users/daniel/.cargo/bin
-set -x PATH $PATH /Users/daniel/go/bin
-set -x PATH $PATH /Users/daniel/.cabal/bin
+set -x PATH $PATH ~/.local/bin
+set -x PATH $PATH ~/.cargo/bin
+set -x PATH $PATH ~/go/bin
+set -x PATH $PATH ~/.cabal/bin
 set -x PATH $PATH /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+
+set -g fish_user_paths "/usr/local/opt/helm@2/bin" $fish_user_paths
+
+export CLOUDSDK_PYTHON=python2
 
 
 # Set up secret environment variables
@@ -133,3 +137,4 @@ function push-to-eyoar
 end
 
 starship init fish | source
+pyenv init - | source

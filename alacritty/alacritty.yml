@@ -1,0 +1,53 @@
+shell:
+  program: /usr/local/bin/fish
+  args:
+    - --login
+
+alt_send_esc: false
+
+window:
+  decorations: "none"
+  dynamic_padding: true
+  padding:
+    x: 4
+    y: 4
+
+# Font configuration (changes require restart)
+font:
+  # The size to use.
+  size: 13
+  normal:
+    family: Fira Code
+    style: Regular
+  bold:
+    family: Fira Code
+  italic:
+    family: Fira Code
+
+schemes:
+  snazzy: &selected_color_scheme
+    primary:
+      background: '#282a36'
+      foreground: '#eff0eb'
+    normal:
+      black:   '#282a36'
+      red:     '#ff5c57'
+      green:   '#5af78e'
+      yellow:  '#f3f99d'
+      blue:    '#57c7ff'
+      magenta: '#ff6ac1'
+      cyan:    '#9aedfe'
+      white:   '#f1f1f0'
+    bright:
+      black:   '#686868'
+      red:     '#ff5c57'
+      green:   '#5af78e'
+      yellow:  '#f3f99d'
+      blue:    '#57c7ff'
+      magenta: '#ff6ac1'
+      cyan:    '#9aedfe'
+      white:   '#f1f1f0'
+
+
+# Colors (Snazzy)
+colors: *selected_color_scheme

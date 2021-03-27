@@ -36,6 +36,10 @@ Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
+
 " Themes
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
@@ -187,9 +191,11 @@ noremap π :cp<CR>
 " Language servers
 lua <<EOF
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.rust_analyzer.setup{}
 EOF
 
 autocmd Filetype javascript setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
