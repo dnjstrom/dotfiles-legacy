@@ -2,20 +2,20 @@ set langmenu=en_US.UTF-8
 
 call plug#begin()
 
+" Lua helpers
+Plug 'nvim-lua/plenary.nvim'
+
 " Features
-Plug 'neovim/nvim-lspconfig'
 Plug 'scrooloose/nerdtree'
-Plug 'sbdchd/neoformat'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-repeat'
-Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-surround'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi'
-Plug 'jiangmiao/auto-pairs'
-Plug 'mattn/emmet-vim'
-Plug 'nvim-lua/completion-nvim'
+Plug 'cohama/lexima.vim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'ap/vim-css-color'
+Plug 'tpope/vim-commentary'
 
 " Tmux integration
 Plug 'tmux-plugins/vim-tmux'
@@ -24,40 +24,54 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " Visualization
 Plug 'vim-airline/vim-airline'
-Plug 'mhinz/vim-signify'
-Plug 'chrisbra/Colorizer'
-
-" Javascript
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
-Plug 'mxw/vim-jsx'
-
-" Typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-
-" Rust
-Plug 'rust-lang/rust.vim'
-
+Plug 'vim-airline/vim-airline-themes'
+Plug 'lewis6991/gitsigns.nvim'
 
 " Themes
-Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'ayu-theme/ayu-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'rakr/vim-one'
+Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
+Plug 'jacoborus/tender.vim'
+Plug 'connorholyday/vim-snazzy'
+Plug 'mhartington/oceanic-next'
+Plug 'bluz71/vim-nightfly-guicolors'
+
+" Highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Intellisense
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 
 
 set termguicolors
-syntax enable
+syntax on
 
-set background=dark
-colorscheme base16-snazzy
-hi Normal guibg=NONE ctermbg=NONE
+let g:oceanic_next_terminal_bold = 1
+"let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
 
-let g:airline_theme='base16'
+" Transparent backgrounds
+"hi Normal guibg=NONE ctermbg=NONE
+"hi LineNr guibg=NONE ctermbg=NONE
+"hi SignColumn guibg=NONE ctermbg=NONE
+"hi EndOfBuffer guibg=NONE ctermbg=NONE
+"hi DiffAdd guibg=NONE ctermbg=NONE guifg=#a6cc70
+"hi DiffChange guibg=NONE ctermbg=NONE guifg=#77a8d9
+"hi DiffDelete guibg=NONE ctermbg=NONE guifg=#f27983
+"hi SignifySignAdd guibg=NONE ctermbg=NONE guifg=#a6cc70
+
+let g:airline_theme='oceanicnext'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 set shell=/bin/bash
+set updatetime=100
 
 " Enable filetype plugins.
 filetype plugin on
@@ -70,10 +84,13 @@ set showmatch " Highlight matching brackets
 set nowrap " Don't soft wrap lines
 set noerrorbells visualbell t_vb= " Disable all errorbells
 set mouse=a " Enable using the mouse
+set signcolumn=number
 
 " Allow modelines at the top or bottom of files.
 set modeline
 set modelines=5
+
+set inccommand=nosplit
 
 " Enable autocompletion of vim-commands.
 set wildmenu
@@ -91,9 +108,13 @@ set expandtab
 " you edit the other buffer.
 set hidden
 
-set incsearch " Show search results as you type
-set hlsearch " Highlight matching search results
 set nohlsearch " Don't hilight search results
+set incsearch " Show search results as you type
+
+set ignorecase
+set smartcase
+
+set breakindent
 
 " Use the system clipboard as the default clipboard.
 set clipboard=unnamed
@@ -114,10 +135,10 @@ set directory=$HOME/.vim/backup//
 " Define how files are saved in order to support file watchers
 set backupcopy=yes
 
-set autoread
 
 " Use space as the leader key.
-map <space> <leader>
+let mapleader=" "
+let maplocalleader=" "
 
 nnoremap j gj
 nnoremap k gk
@@ -127,6 +148,7 @@ map <leader>c :nohl<CR>
 
 " Easily reload the vim config.
 command! Reload so $MYVIMRC
+command! Config e $MYVIMRC
 
 " UI fixes
 
@@ -157,29 +179,19 @@ set splitright
 set laststatus=2 " Always show statusline
 
 
-" Plugin specic settings
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
-" Automatically format on save
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * Neoformat
-augroup END
-
 function MyNerdToggle()
-  if &filetype == 'nerdtree'
-      :NERDTreeToggle
-  else
-      :NERDTreeFind
-  endif
+  if @% == ""
+    :NERDTreeToggle
+  elseif &filetype == 'nerdtree'
+    NERDTreeToggle                      
+  else                                    
+    NERDTreeFind                        
+  endif  
 endfunction
 
 nnoremap <leader><space> :call MyNerdToggle()<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
-
-map <leader> <Plug>(easymotion-prefix)
-nmap s <Plug>(easymotion-s2)
 
 " Easy movement in quickfix window
 noremap <A-n> :cn<CR>
@@ -188,33 +200,21 @@ noremap <A-p> :cn<CR>
 noremap π :cp<CR>
 
 
-" Language servers
-lua <<EOF
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-EOF
+"
+" Additional configs
+"
 
-autocmd Filetype javascript setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+runtime configs/fzf.vim
 
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+lua require("treesitter")
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevelstart=1000
 
-" Autocompletion
-autocmd BufEnter * lua require'completion'.on_attach()
+lua require("nvim-lspconfig")
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-" Avoid showing message extra message when using completion
+lua require("nvim-compe")
+set completeopt=menuone,noselect
 set shortmess+=c
+
+lua require('gitsigns').setup()

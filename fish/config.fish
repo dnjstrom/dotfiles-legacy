@@ -40,7 +40,7 @@ if not set -q abbrs_initialized
     abbr gAC 'git add -A :/; git commit'
     abbr gf 'git fetch'
     abbr gp 'git pull --rebase'
-    abbr gP 'git push'
+    abbr gP 'git push -u origin HEAD'
     abbr gr 'git rebase'
     abbr gs 'git status'
     abbr gd 'git -c color.ui=always status -v -v | less -RX'
@@ -135,6 +135,38 @@ function push-to-eyoar
         echo "Quitting without pushing"
     end
 end
+
+alias frontend="cd /Users/daniel.strom/Projects/motherbrain-eye/frontend"
+alias backend="cd /Users/daniel.strom/Projects/motherbrain-eye/backend"
+
+# Use term colors for syntax highlighting
+set -u fish_color_normal default
+set -u fish_color_param default default
+set -u fish_color_comment default
+set -u fish_color_autosuggestion default
+set -u fish_pager_color_description default
+set -u fish_pager_color_progress default
+set -u fish_pager_color_secondary default
+
+set -u fish_color_command blue --bold
+set -u fish_pager_color_prefix blue --bold --underline
+set -u fish_color_user blue
+set -u fish_pager_color_completion blue
+
+set -u fish_color_end cyan
+set -u fish_color_search_match cyan
+set -u fish_color_cwd cyan
+set -u fish_color_host cyan
+
+set -u fish_color_operator yellow
+set -u fish_color_match yellow
+set -u fish_color_escape yellow
+
+set -u fish_color_error red
+
+set -u fish_color_quote green
+
+
 
 starship init fish | source
 pyenv init - | source
