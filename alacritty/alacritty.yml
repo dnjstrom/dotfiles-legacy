@@ -30,7 +30,7 @@ font:
 
 schemes:
 
-  snazzy:
+  snazzy: &selected_color_scheme
     primary:
       background: "#282a36"
       foreground: "#eff0eb"
@@ -102,7 +102,7 @@ schemes:
       cyan: '#6d96a5'
       white: '#aeb3bb'
 
-  oceanic_next: &selected_color_scheme
+  oceanic_next:
     primary:
       background: '#1b2b34'
       foreground: '#d8dee9'

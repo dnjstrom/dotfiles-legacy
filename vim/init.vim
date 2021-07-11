@@ -4,6 +4,7 @@ call plug#begin()
 
 " Lua helpers
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
 
 " Features
 Plug 'scrooloose/nerdtree'
@@ -12,10 +13,13 @@ Plug 'mg979/vim-visual-multi'
 Plug 'cohama/lexima.vim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+
+" Finder
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Tmux integration
 Plug 'tmux-plugins/vim-tmux'
@@ -162,10 +166,6 @@ command! WQ wq
 " Automatically clear search highlights when entering insert mode.
 autocmd InsertEnter * :nohlsearch | redraw
 
-
-" Indent pasted text to match target.
-nnoremap p ]p
-
 " Make 'yank rest of line' consistent with 'delete' and 'change'.
 nnoremap Y y$
 
@@ -189,7 +189,7 @@ function MyNerdToggle()
   endif  
 endfunction
 
-nnoremap <leader><space> :call MyNerdToggle()<CR>
+nnoremap <leader>e :call MyNerdToggle()<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 
@@ -199,19 +199,34 @@ noremap ‘ :cn<CR>
 noremap <A-p> :cn<CR>
 noremap π :cp<CR>
 
+" Navigate tabs using tab button :D
+nnoremap  <silent> <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+
+
+" This needs to work on visible buffers, not actual buffer numbers...
+nnoremap <leader>1 :b 1<CR>
+nnoremap <leader>2 :b 2<CR>
+nnoremap <leader>3 :b 3<CR>
+nnoremap <leader>4 :b 4<CR>
+nnoremap <leader>5 :b 5<CR>
+nnoremap <leader>6 :b 6<CR>
+nnoremap <leader>7 :b 7<CR>
+nnoremap <leader>8 :b 8<CR>
+nnoremap <leader>9 :b 9<CR>
+nnoremap <leader>0 :b 10<CR>
 
 "
 " Additional configs
 "
-
-runtime configs/fzf.vim
-
 lua require("treesitter")
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set foldlevelstart=1000
 
 lua require("nvim-lspconfig")
+
+lua require("_telescope")
 
 lua require("nvim-compe")
 set completeopt=menuone,noselect
