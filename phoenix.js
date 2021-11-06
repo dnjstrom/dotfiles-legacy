@@ -157,7 +157,7 @@ const devLayout = [
       moveToScreen(tallMonitor)(window);
       left(window);
     },
-    Hyper: (window) => {
+    Alacritty: (window) => {
       moveToScreen(tallMonitor)(window);
       right(window);
     },
@@ -173,7 +173,7 @@ const devLayout = [
       moveToScreen(middleMonitor)(window);
       left(window);
     },
-    Hyper: (window) => {
+    Alacritty: (window) => {
       moveToScreen(middleMonitor)(window);
       right(window);
     },
@@ -199,7 +199,7 @@ const adminLayout = [
       moveToScreen(middleMonitor)(window);
       left(window);
     },
-    Hyper: (window) => {
+    Alacritty: (window) => {
       moveToScreen(middleMonitor)(window);
       right(window);
     },
@@ -333,5 +333,5 @@ Key.on("l", ["shift", "alt", "ctrl"], moveToRelativeSpace(1));
 
 Key.on("u", ["shift", "alt"], focusApp("Google Chrome"));
 Key.on("i", ["shift", "alt"], focusApp("Code"));
-Key.on("o", ["shift", "alt"], focusApp("Hyper"));
+Key.on("o", ["shift", "alt"], focusApp("Alacritty"));
 Key.on("p", ["shift", "alt"], focusApp("Slack"));
