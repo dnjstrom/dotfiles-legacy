@@ -16,6 +16,10 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
+Plug 'phaazon/hop.nvim'
+
+" Ergonomics
+Plug 'karb94/neoscroll.nvim'
 
 " Finder
 Plug 'nvim-telescope/telescope.nvim'
@@ -48,6 +52,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Intellisense
 Plug 'neovim/nvim-lspconfig'
+Plug 'tami5/lspsaga.nvim'
 
 call plug#end()
 
@@ -233,3 +238,9 @@ set completeopt=menuone,noselect
 set shortmess+=c
 
 lua require('gitsigns').setup()
+
+lua require'hop'.setup()
+nnoremap s :HopChar2<CR>
+
+lua require('neoscroll').setup({ cursor_scrolls_alone = false })
+lua require('lspsaga').setup()
