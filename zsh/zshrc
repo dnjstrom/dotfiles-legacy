@@ -78,6 +78,10 @@ export PATH=$GRAMO_DIR/bin:$PATH
 STACK_PATH=/Users/dstr/.local/bin 
 export PATH=$STACK_PATH/bin:$PATH
 
+
+# Custom scripts
+export PATH=$HOME/.dotfiles/bin:$PATH
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 

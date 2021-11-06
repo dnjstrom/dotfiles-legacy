@@ -2,6 +2,8 @@ shell:
   program: /usr/local/bin/fish
   args:
     - --login
+    - -C
+    - "tmux-attach-to-first-unattached-session-or-create"
 
 alt_send_esc: false
 

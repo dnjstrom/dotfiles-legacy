@@ -8,6 +8,7 @@ set -x PATH $PATH ~/.cargo/bin
 set -x PATH $PATH ~/go/bin
 set -x PATH $PATH ~/.cabal/bin
 set -x PATH $PATH /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+set -x PATH $PATH ~/.dotfiles/bin
 
 set -g fish_user_paths "/usr/local/opt/helm@2/bin" $fish_user_paths
 
