@@ -32,6 +32,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 vim.cmd [[autocmd CursorHold * Lspsaga show_cursor_diagnostics]]
 vim.cmd [[autocmd CursorHoldI * silent! Lspsaga show_cursor_diagnostics]]
 
+-- Show light bulb when code actions are available
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+
 -- Use an on_attach function to only map the following keys 
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -50,6 +53,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap("n", "<leader>rn", "<cmd>Lspsaga rename<cr>", opts)
   buf_set_keymap('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
+  buf_set_keymap('v', '<leader>ca', ':<C-U>Lspsaga range_code_action<CR>', opts)
   buf_set_keymap("n", "K",  "<cmd>Lspsaga hover_doc<cr>", opts)
   buf_set_keymap("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
   buf_set_keymap("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)

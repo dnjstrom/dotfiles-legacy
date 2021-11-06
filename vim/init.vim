@@ -53,6 +53,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Intellisense
 Plug 'neovim/nvim-lspconfig'
 Plug 'tami5/lspsaga.nvim'
+Plug 'kosayoda/nvim-lightbulb'
 
 call plug#end()
 
