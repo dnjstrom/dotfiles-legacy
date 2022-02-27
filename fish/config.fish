@@ -57,6 +57,7 @@ if not set -q abbrs_initialized
     abbr l 'la'
     abbr c 'code .'
     abbr gitclean 'git checkout master; and git fetch -p; and git pull; and git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d; and git fetch --prune'
+    abbr gu 'git branch -u origin/(git rev-parse --abbrev-ref HEAD)'
 end
 
 function tmux_func
@@ -171,3 +172,4 @@ set -u fish_color_quote green
 
 starship init fish | source
 pyenv init - | source
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /Users/daniel.strom/.ghcup/bin $PATH # ghcup-env

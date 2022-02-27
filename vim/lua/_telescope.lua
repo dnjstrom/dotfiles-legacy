@@ -1,4 +1,20 @@
+local M = {}
+
+local actions = require('telescope.actions')
+
 require('telescope').setup {
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules",
+      "__image_snapshots__",
+      "__gql_types__"
+    },
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close, -- Close on single <esc>
+      },
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
@@ -14,7 +30,16 @@ require('telescope').setup {
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 
-vim.api.nvim_set_keymap("n", "<C-p>", ":Telescope find_files<CR>", { silent = true })
+
+-- Fall back to find_files if we're not in a git repo
+M.project_files = function()
+  local opts = {} -- define here if you want to define something
+  local ok = pcall(require'telescope.builtin'.git_files, opts)
+  if not ok then require'telescope.builtin'.find_files(opts) end
+end
+
+
+vim.api.nvim_set_keymap("n", "<C-p>", "<CMD>lua require\'_telescope\'.project_files()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader><space>", ":Telescope lsp_document_symbols <CR>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references <CR>", { silent = true, noremap = true })
 
@@ -24,3 +49,5 @@ vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references <CR>", { silent = 
 -- nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 vim.cmd("command! Find :Telescope live_grep")
+
+return M

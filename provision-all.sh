@@ -4,7 +4,7 @@
 ~/.dotfiles/install.sh
 
 # Phoenix
-ln -s ~/.dotfiles/phoenix.js ~/.phoenix.js
+ln -s ~/.dotfiles/phoenix/index.js ~/.phoenix.js
 
 # Git
 ln -s ~/.dotfiles/git/gitignore ~/.gitignore

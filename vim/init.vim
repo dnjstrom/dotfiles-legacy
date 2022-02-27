@@ -222,6 +222,10 @@ nnoremap <leader>8 :b 8<CR>
 nnoremap <leader>9 :b 9<CR>
 nnoremap <leader>0 :b 10<CR>
 
+nmap <C-K>        <C-U>
+nmap <C-J>      <C-D>
+nmap <C-H>      z20<Left>
+nmap <C-L>     z20<Right>
 "
 " Additional configs
 "
