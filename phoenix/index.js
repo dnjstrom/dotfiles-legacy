@@ -17,6 +17,9 @@ const devLayout = Object.freeze([
     Slack: (window) => {
       bottomright(window);
     },
+    Messenger: (window) => {
+      bottomright(window);
+    },
     "": (window) => {
       topright(window);
     },
