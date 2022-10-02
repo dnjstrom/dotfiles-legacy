@@ -7,18 +7,27 @@ set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.cargo/bin
 set -x PATH $PATH ~/go/bin
 set -x PATH $PATH ~/.cabal/bin
-set -x PATH $PATH /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+set -x PATH $PATH /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+
 set -x PATH $PATH ~/.dotfiles/bin
 
 set -g fish_user_paths "/usr/local/opt/helm@2/bin" $fish_user_paths
 
-export CLOUDSDK_PYTHON=python2
+/opt/homebrew/bin/brew shellenv | .
+
+# export BUILD_LIBRDKAFKA=0
+# export C_INCLUDE_PATH=/opt/homebrew/Cellar/librdkafka/1.8.2/include/librdkafka
+# export LIBRARY_PATH=/opt/homebrew/Cellar/librdkafka/1.8.2/lib
+export LDFLAGS="-L/opt/homebrew/opt/openssl/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl/lib/pkgconfig"
+
 
 
 # Set up secret environment variables
 source ~/.dotfiles/fish/config.secret.fish
 
-eval (hub alias -s)
+#eval (hub alias -s)
 
 # Clear greeting message on startup
 set fish_greeting
@@ -57,7 +66,8 @@ if not set -q abbrs_initialized
     abbr l 'la'
     abbr c 'code .'
     abbr gitclean 'git checkout master; and git fetch -p; and git pull; and git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d; and git fetch --prune'
-    abbr gu 'git branch -u origin/(git rev-parse --abbrev-ref HEAD)'
+    abbr gu 'git branch -u origin/(git rev-parse --ab
+    v-ref HEAD)'
 end
 
 function tmux_func
@@ -168,8 +178,10 @@ set -u fish_color_error red
 
 set -u fish_color_quote green
 
-
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
+export CLOUDSDK_PYTHON=(pyenv which python2)
 
 starship init fish | source
-pyenv init - | source
+
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /Users/daniel.strom/.ghcup/bin $PATH # ghcup-env

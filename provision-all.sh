@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install dependencies
-~/.dotfiles/install.sh
+# ~/.dotfiles/install.sh
 
 # Phoenix
 ln -s ~/.dotfiles/phoenix/index.js ~/.phoenix.js
@@ -10,7 +10,7 @@ ln -s ~/.dotfiles/phoenix/index.js ~/.phoenix.js
 ln -s ~/.dotfiles/git/gitignore ~/.gitignore
 
 # Hyper
-ln -s ~/.dotfiles/hyper.js ~/.hyper.js
+# ln -s ~/.dotfiles/hyper.js ~/.hyper.js
 
 # Vim
 # rm -fr ~/.vim

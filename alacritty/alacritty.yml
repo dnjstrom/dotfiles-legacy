@@ -1,5 +1,5 @@
 shell:
-  program: /usr/local/bin/fish
+  program: /opt/homebrew/bin/fish
   args:
     - --login
     - -C
@@ -10,11 +10,10 @@ alt_send_esc: false
 window:
   decorations: "none"
   dynamic_padding: true
+  opacity: 1
   padding:
     x: 4
     y: 4
-
-background_opacity: 1
 
 # Font configuration (changes require restart)
 font:
